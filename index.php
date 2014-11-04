@@ -33,6 +33,23 @@ if(isset($_POST['submit'])){
 	$years = $age->y;
 	$months = $age->m;
 	$days = $age->d;
+
+	//other age calculations
+	//Total Months Old
+	$totalMonthsOld = $age->m + ($age->y * 12);
+
+	//days old
+	$leapDays = $age->y / 4;
+	$daysTotal =($age->y * 365) + ($age->m * 30) + ($age->d + $leapDays);
+
+	//weeks old
+	$weeks = $daysTotal/7;
+	$daysRemaining = $daysTotal%7;
+
+	$hours = $daysTotal * 24;
+	$minutes = $hours * 60;
+	$seconds = $minutes * 60;
+
 	$leapYearAge;
 	$isLeapYear = false;
 	if($year % 4 == 0 && $month == "02" && $day == "29"){
@@ -47,7 +64,13 @@ if(isset($_POST['submit'])){
 	}
 	else{
 		$hasResult = true;
-		$result = "You are $years Years, $months Months, and $days Days Old.";
+		$result = "You are $years Years, $months Months, and $days Days Old.<br/>";
+		$result .= "Or $totalMonthsOld Months and $days Days old.<br/>";
+		$result .= "Or " . floor($weeks) . " Weeks and $daysRemaining Days old.<br/>";
+		$result .= "Or " . floor($daysTotal) . " Days old.<br/>";
+		$result .= "Or " . floor($hours) . " Hours old.<br/>";
+		$result .= "Or " . floor($minutes) . " Minutes old.<br/>";
+		$result .= "Or " . floor($seconds) . " Seconds old.<br/>";
 		if($days == 0 && $months == 0 && $years > 0){
 			$result .= "<br/>Happy Birthday!";
 		}//end if
@@ -64,6 +87,7 @@ if(isset($_POST['submit'])){
 	<body>
 		<div class="wrap">
 			<h1>Please input your date of birth, and this program will calculate how many years, months, and days old you are:</h1>
+			<p>NOTE: Not all time equations are working 100% properly, some values may be incorrect.</p>
 			<form action="index.php" class="form" method="post">
 				<label for="month" class="label">Month: </label>
 				<select name="month" id="DOM" onchange="checkDay($(this).val());">
