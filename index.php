@@ -66,11 +66,11 @@ if(isset($_POST['submit'])){
 		$hasResult = true;
 		$result = "You are $years Years, $months Months, and $days Days Old.<br/>";
 		$result .= "Or $totalMonthsOld Months and $days Days old.<br/>";
-		$result .= "Or " . floor($weeks) . " Weeks and $daysRemaining Days old.<br/>";
-		$result .= "Or " . floor($daysTotal) . " Days old.<br/>";
-		$result .= "Or " . floor($hours) . " Hours old.<br/>";
-		$result .= "Or " . floor($minutes) . " Minutes old.<br/>";
-		$result .= "Or " . floor($seconds) . " Seconds old.<br/>";
+		$result .= "Or " . number_format(floor($weeks)) . " Weeks and $daysRemaining Days old.<br/>";
+		$result .= "Or " . number_format(floor($daysTotal)) . " Days old.<br/>";
+		$result .= "Or " . number_format(floor($hours)) . " Hours old.<br/>";
+		$result .= "Or " . number_format(floor($minutes)) . " Minutes old.<br/>";
+		$result .= "Or " . number_format(floor($seconds)) . " Seconds old.<br/>";
 		if($days == 0 && $months == 0 && $years > 0){
 			$result .= "<br/>Happy Birthday!";
 		}//end if
